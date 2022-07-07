@@ -27,7 +27,7 @@
      [:div.cardpoin
       [:button [:a.button {:href "/bahasverb2"} "2"]]])]))
  
- (defn bahasverb [soal]
+ (defn resultverb [soal]
   (html5
    [:head
     (include-css "result.css")]

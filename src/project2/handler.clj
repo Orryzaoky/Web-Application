@@ -26,16 +26,6 @@
         (resp/redirect "/resultmath")))
   (GET "/resultmath" [] (result/resultmath prob/score prob/soalmath))
   (GET "/Pembahasan" [] result/bahasmath)
-  (POST "/quiz" [no0 no0-id no1 no1-id no2 no2-id no3 no3-id no4 no4-id no5 no5-id no6 no6-id no7 no7-id]
-    (do (prob/check no0 no0-id)
-        (prob/check no1 no1-id)
-        (prob/check no2 no2-id)
-        (prob/check no3 no3-id)
-        (prob/check no4 no4-id)
-        (prob/check no5 no5-id)
-        (prob/check no6 no6-id)
-        (prob/check no7 no7-id)
-        (resp/redirect)))
   
   (GET "/Verbal" [] (verb/soalverb (prob/take-soal (shuffle prob/soalverb))))
   (POST "/quizverb" [no0 no0-id no1 no1-id no2 no2-id no3 no3-id no4 no4-id no5 no5-id no6 no6-id no7 no7-id]

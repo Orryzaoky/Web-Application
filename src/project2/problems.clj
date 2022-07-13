@@ -1,14 +1,15 @@
-(ns project2.problems)
+(ns project2.problems
+  (:require [clojure.string :as str]))
 
-(def soalmath (->> "resources/sample.edn"
+(def soalmath (->> "resources/math.edn"
                (slurp)
                (read-string)))
 
-(def soalverb (->> "resources/sample2.edn"
+(def soalverb (->> "resources/verbal.edn"
                       (slurp)
                       (read-string)))
 
-(def soalinggris (->> "resources/sample3.edn"
+(def soalinggris (->> "resources/english.edn"
                       (slurp)
                       (read-string)))
 
@@ -20,18 +21,38 @@
 (defn reset-score []
   (reset! score 0))
 
-(defn get-id [problem-id]
+
+(def wrong-question (atom 0))
+
+(defn reset-wrong-question []
+  (reset! wrong-question 0))
+
+
+(def pass (atom 0))
+
+(defn reset-pass []
+  (reset! pass 0))
+
+
+(defn get-soal-id [materi problem-id]
   (loop [index 0
          choice (cond
-                  (= (apply str (take 3 problem-id)) "565") soalmath
-                  (= (apply str (take 4 problem-id)) "5699") soalverb
-                  (= (apply str (take 4 problem-id)) "5690") soalinggris)] 
-    (if (= (:problem-id (get choice index)) problem-id)
+                  (= materi "math") soalmath
+                  (= materi "verbal-logic") soalverb
+                  (= materi "english") soalinggris)] 
+    (if (= (get-in choice [index :problem-id]) problem-id)
       (get choice index)
       (recur (inc index) choice))))
 
-(defn check [jawaban id]
-  (let [soal (get-id id)]
-    (when (= jawaban (get-in soal [:soal :jawaban]))
-      (swap! score inc))))
+(defn check [materi id jawaban]
+  (let [soal (get-soal-id materi id)]
+    (if (nil? jawaban)
+      (swap! pass inc)
+      (if (= jawaban (get-in soal [:soal :jawaban]))
+        (swap! score inc)
+        (swap! wrong-question inc))))) 
 
+(def soal (atom nil))
+
+(defn simpan-soal [problems]
+  (reset! soal (read-string (str "[" problems "]"))))

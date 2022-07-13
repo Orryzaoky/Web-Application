@@ -14,7 +14,14 @@
     (form/label (str "no" i) (str "   " (get-in soal [i :soal :options 0 1])))
     [:br]
     (form/radio-button (str "no" i) false "B")
-    (form/label (str "no" i) (str "   " (get-in soal [i :soal :options 1 1])))]))
+    (form/label (str "no" i) (str "   " (get-in soal [i :soal :options 1 1])))
+    [:br]
+    (form/radio-button (str "no" i) false "C")
+    (form/label (str "no" i) (str "   " (get-in soal [i :soal :options 2 1])))
+    [:br]
+    (form/radio-button (str "no" i) false "D")
+    (form/label (str "no" i) (str "   " (get-in soal [i :soal :options 3 1])))]
+    ))
 
 (defn soalverb [soal]
   (html5
@@ -23,8 +30,9 @@
    [:body [:h1 "Verbal & Logic"]
     (form/form-to
      [:post "/quizverb"]
-    (soalv soal)
+     (form/hidden-field "materi" (get-in soal [0 :topic]))
+     (form/hidden-field "problems" soal)
+     (soalv soal)
      [:br]
      (anti-forgery-field)
      [:h1 (form/submit-button "SUBMIT")])]))
-

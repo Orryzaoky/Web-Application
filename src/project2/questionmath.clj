@@ -22,7 +22,7 @@
     (form/radio-button (str "no" i) false "D")
     (form/label (str "no" i) (str "   " (get-in soal [i :soal :options 3 1])))
     [:br]
-    (form/radio-button (str "no" i) false "D")
+    (form/radio-button (str "no" i) false "E")
     (form/label (str "no" i) (str "   " (get-in soal [i :soal :options 4 1])))]
     ))
 
@@ -33,7 +33,9 @@
    [:body [:h1 "Matematika"]
     (form/form-to
      [:post "/quiz"]
-    (soalm soal)
+     (form/hidden-field "materi" (get-in soal [0 :topic]))
+     (form/hidden-field "problems" soal)
+     (soalm soal)
      [:br]
      (anti-forgery-field)
      [:h1 (form/submit-button "SUBMIT")])]))

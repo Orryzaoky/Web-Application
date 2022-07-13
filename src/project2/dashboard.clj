@@ -7,15 +7,16 @@
    (include-css "dashboard.css")]
   [:body 
    [:h1 "SIMPLE QUIZ"] 
-   [:p "Yuk tes kemampuanmu dengan Simple Quiz!"]
-   [:p "Jawab dengan cepat dan tepat ya..."]
+   [:p "Hanya di simple quiz belajar jadi seru dan menyenangkan!!"]
+   [:p "Tunggu apalagi?"]
+   [:p "LET'S GO!!"]
    [:div.card1 
     [:h2 "MATEMATIKA"]
     [:p
      "Pelajaran matematika di kelas sering nggak masuk ke otak? Tes seberapa cepat dan akurat kamu dalam mengerjakan persoalan numerik disini!"]
     [:a.button {:href "/Matematika"} "MULAI"]]
    [:div.card2 
-    [:h2 "VERBAL LOGIC"]
+    [:h2 "VERBAL & LOGIC"]
     [:p
      "Ukur sejauh mana pemahamanmu dalam cara berpikir verbal dan logika. Jangan sampai dibilang lemot karena gagal paham waktu diajak bicara yaa!!"]
     [:a.button {:href "/Verbal"} "MULAI"]]]
